@@ -26,23 +26,39 @@
 
   <section class="question-grid section-shell" aria-label="About the lab">
     <article class="question-card">
-      <a class="card-image" href="research.html"><img src="images/research-universe.png" alt="Transcription factor research illustration"><span>What we do</span></a>
+      <a class="card-image" href="research.html"><img src="images/home-what.png" alt="Experimental design for measuring competition between a transcription factor and mismatch repair"><span>What we do</span></a>
       <p>We study how transcription factors regulate gene expression, how they increase DNA mutagenesis by competing with DNA repair, and how gene regulation is modulated by CRISPR-Cas systems.</p>
       <a class="text-link" href="research.html">Explore our research <span>›</span></a>
     </article>
     <article class="question-card">
-      <div class="card-image"><img src="images/qbic-selex.png" alt="Quantitative regulatory genomics workflow"><span>Why we do it</span></div>
+      <div class="card-image"><img src="images/home-why.png" alt="CRISPR activation and repression of gene expression"><span>Why we do it</span></div>
       <p>Understanding genome biology, and ultimately engineering it, requires a quantitative, mechanistic understanding of how the genome is being recognized and altered by DNA-binding proteins.</p>
     </article>
     <article class="question-card">
-      <div class="card-image"><img src="images/tango-assay.png" alt="High-throughput transcription factor assay"><span>How we do it</span></div>
+      <div class="card-image"><img src="images/home-how.png" alt="Quantitative model of transcription factor effects on UV-induced DNA damage"><span>How we do it</span></div>
       <p>We combine high-throughput technologies, quantitative biochemistry, genomic analyses, and machine learning to build mechanistic models of protein-DNA binding and subsequent cellular activity.</p>
     </article>
     <article class="question-card">
-      <a class="card-image" href="people.html"><img src="images/raluca-gordan.png" alt="Members of the Gordân Lab"><span>Who we are</span></a>
+      <a class="card-image" href="people.html"><img src="images/home-who.png" alt="Members and friends of the Gordân Lab"><span>Who we are</span></a>
       <p>We are a collaborative team of experimental and computational scientists with a shared interest in protein-DNA interactions and their roles in cellular processes.</p>
       <a class="text-link" href="people.html">Meet the lab <span>›</span></a>
     </article>
+  </section>
+
+  <section class="news section-shell">
+    <div class="news-heading">
+      <h2>Latest news</h2>
+      <div class="news-controls" aria-label="News carousel controls">
+        <button class="news-arrow news-previous" type="button" aria-label="Show newer news" disabled>←</button>
+        <button class="news-arrow news-next" type="button" aria-label="Show older news">→</button>
+      </div>
+    </div>
+    <div class="news-grid" tabindex="0" aria-label="Latest lab news">
+      <article><img class="news-image" src="images/news-cshl-2026.png" alt="Michael presenting a dCas9 poster at the 2026 CSHL Genome Engineering meeting"><time>Aug 11–15, 2026</time><h3>Michael and Raluca presented our latest dCas9 results at the CSHL Genome Engineering meeting.</h3></article>
+      <article><img class="news-image" src="images/news-uv-nature-comms-2026.png" alt="Nature Communications article on transcription factors and UV damage formation and repair"><time>Aug 17, 2026</time><h3>Our latest work on the interplay between transcription factors and UV damage/repair is officially out in Nature Communications. Congratulations to all authors!</h3></article>
+      <article><img class="news-image" src="images/news-iowa-course-2026.png" alt="CTAB diagram connecting mathematics, computer science, biological expertise, and data science"><time>Aug 10–21, 2026</time><h3>Yuncheng, Raluca, and our collaborator Dr. Miles Pufall taught the “Computational Thinking for Academic Bioscientists” 2-week course at the University of Iowa.</h3></article>
+      <article><img class="news-image" src="images/news-regsys-ismb-2026.png" alt="Raluca speaking at the RegSys session during the 2026 ISMB meeting"><time>July 13, 2026</time><h3>Raluca gave a RegSys keynote talk at the ISMB 2026 meeting in Washington, DC.</h3></article>
+    </div>
   </section>
 
   <section class="highlights section-shell">
@@ -58,15 +74,31 @@
     <a class="blue-button" href="publications.html">View all publications</a>
   </section>
 
-  <section class="news section-shell">
-    <h2>Latest news</h2>
-    <div class="news-grid">
-      <article><div class="placeholder-image">Lab news image</div><time>July 2026</time><h3>Welcome to the new Gordân Lab website</h3><p>Follow our work in quantitative regulatory genomics at UMass Chan.</p></article>
-      <article><div class="placeholder-image alternate">Research image</div><time>Coming soon</time><h3>Research and lab updates</h3><p>News, publications, and opportunities will appear here.</p></article>
-    </div>
-  </section>
 </main>
 
 <footer><div><strong>Gordân Lab</strong><p>UMass Chan Medical School<br>Worcester, Massachusetts</p></div><div><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="people.html">People</a><a href="contact.html">Contact</a></div><span>© 2026 Gordân Lab</span></footer>
+<script>
+  const newsGrid = document.querySelector('.news-grid');
+  const previousNews = document.querySelector('.news-previous');
+  const nextNews = document.querySelector('.news-next');
+
+  function updateNewsControls() {
+    const scrollEnd = newsGrid.scrollWidth - newsGrid.clientWidth;
+    previousNews.disabled = newsGrid.scrollLeft <= 2;
+    nextNews.disabled = newsGrid.scrollLeft >= scrollEnd - 2;
+  }
+
+  function scrollNews(direction) {
+    const card = newsGrid.querySelector('article');
+    const gap = parseFloat(getComputedStyle(newsGrid).columnGap) || 0;
+    newsGrid.scrollBy({ left: direction * (card.offsetWidth + gap), behavior: 'smooth' });
+  }
+
+  previousNews.addEventListener('click', () => scrollNews(-1));
+  nextNews.addEventListener('click', () => scrollNews(1));
+  newsGrid.addEventListener('scroll', updateNewsControls, { passive: true });
+  window.addEventListener('resize', updateNewsControls);
+  updateNewsControls();
+</script>
 </body>
 </html>
