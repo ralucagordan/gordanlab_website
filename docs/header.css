@@ -20,10 +20,11 @@ body {
 }
 
 .site-header {
+  width: 100%;
   min-height: 74.8px;
-  max-width: 1190px;
+  max-width: 1238px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 24px;
   display: flex;
   align-items: center;
   gap: 54px;
@@ -127,6 +128,10 @@ body {
 
 .card-image::after {
   background: rgba(52, 81, 99, .38);
+}
+
+.section-shell {
+  width: calc(100% - 48px);
 }
 
 .question-grid {
@@ -320,7 +325,10 @@ body {
 
 .people-page .person-card img,
 .people-page .person-placeholder {
-  height: 200px;
+  width: 90%;
+  height: 180px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .people-page .person-card {
@@ -532,7 +540,96 @@ footer {
   background: #334955;
 }
 
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-brand > p {
+  margin: 0;
+}
+
+.footer-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-title a {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.footer-title img {
+  width: 76px;
+  height: 48px;
+  padding: 3px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.footer-title a:nth-child(2) img {
+  width: 92px;
+}
+
+.footer-brand p a {
+  color: inherit;
+}
+
+.footer-brand p a:hover,
+.footer-brand p a:focus,
+.footer-links a:hover,
+.footer-links a:focus {
+  text-decoration: underline;
+}
+
+.contact-details a {
+  color: var(--header-blue-dark);
+  text-decoration: underline;
+}
+
+.contact-page .content-page {
+  width: calc(100% - 48px);
+  max-width: 1190px;
+}
+
+.contact-grid {
+  grid-template-columns: 2fr 1fr;
+}
+
+.map-card {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.map-card img {
+  width: 100%;
+  height: auto;
+  min-height: 240px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.map-card figcaption {
+  padding: 12px 16px;
+  font-size: 16px;
+}
+
+.map-card figcaption a {
+  color: var(--header-blue-dark);
+  text-decoration: underline;
+}
+
 @media (max-width: 900px) {
+  .section-shell,
+  .section-shell:not(.question-grid),
+  .question-grid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
   .site-header {
     padding: 0 24px;
     gap: 28px;
@@ -549,10 +646,19 @@ footer {
 }
 
 @media (max-width: 650px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
   .site-header {
     min-height: 0;
     padding: 22px 20px 16px;
     flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .people-page .people-grid {
