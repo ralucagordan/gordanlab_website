@@ -562,15 +562,15 @@ footer {
 }
 
 .footer-title img {
-  width: 76px;
-  height: 48px;
+  width: 56px;
+  height: 36px;
   padding: 3px;
   object-fit: contain;
   background: #fff;
 }
 
 .footer-title a:nth-child(2) img {
-  width: 92px;
+  width: 68px;
 }
 
 .footer-brand p a {
